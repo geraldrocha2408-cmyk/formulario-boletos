@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Boleto</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label { display: block; margin-top: 10px; }
+    input { padding: 6px; width: 250px; }
+    button { margin-top: 15px; padding: 10px; cursor: pointer; }
+    #qrcode { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h2>Formulario de cliente</h2>
+
+  <form id="formulario">
+    <label>Teléfono: <input type="text" name="telefono"></label>
+    <label>Nombre: <input type="text" name="nombre"></label>
+    <label>Apellido: <input type="text" name="apellido"></label>
+    <label>Correo electrónico: <input type="email" name="correo"></label>
+    <label>DUI: <input type="text" name="dui"></label>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <button onclick="generarQR()">Generar QR para este formulario</button>
+  <div id="qrcode"></div>
+  <p id="qr-link"></p>
+
+  <script>
+    function generarQR() {
+      // 👇 Cambia esta URL cuando actives tu GitHub Pages
+      const url = "https://TU-USUARIO.github.io/formulario-boletos/";
+
+      document.getElementById("qrcode").innerHTML = "";
+      new QRCode(document.getElementById("qrcode"), {
+        text: url,
+        width: 128,
+        height: 128
+      });
+
+      document.getElementById("qr-link").innerText = "QR que dirige a: " + url;
+    }
+  </script>
+
+</body>
+</html>
